@@ -23,9 +23,9 @@ require('./dbs')
 // };
 // const openapiSpecification = swaggerJsDoc(options);
 // const swaggerDocument = YAML.parse(file);
-// const {
-//   errorHandlingMiddleWare,
-// } = require("./middlewares/errorHandlingMiddleware");
+const {
+  errorHandlingMiddleWare,
+} = require("./middlewares/errorHandlingMiddleware");
 const app = express();
 
 //init middleares
@@ -38,7 +38,7 @@ app.use(
     extended: true,
   })
 );
-app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(openapiSpecification));
+// app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(openapiSpecification));
 // require('./tests/checkredis.test')
 //test pub.sub redis
 // require('./tests/inventory.test')
@@ -73,5 +73,5 @@ app.use("/", require("./routes"));
 //   next(error);
 // });
 
-// app.use(errorHandlingMiddleWare);
+app.use(errorHandlingMiddleWare);
 module.exports = app;
